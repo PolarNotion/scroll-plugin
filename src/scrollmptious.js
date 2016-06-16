@@ -8,9 +8,7 @@
 (function ($) {
   $.fn.scrollmptious = function (options) {
     'use strict';
-
-    $(this).css({"position":"fixed"});
-
+    
     var delta = 5, 
         didScroll = false,  
         lastScrollTop = 0, 
@@ -31,13 +29,13 @@
       if (st > lastScrollTop && st > height) {
         //scrolling down
         if (typeof settings.upFunc === 'function' ) {
-          settings.upFunc.call
+          settings.upFunc.call($this);
         } else {
           $this.css('top', - height.toString() + 'px');
         }
       } else if (st + $(window).height() < $(document).height()) {
         if (typeof settings.downFunc === 'function' ) {
-          settings.downFunc.call
+          settings.downFunc.call($this);
         } else {
           $this.css('top',0);
         }

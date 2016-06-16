@@ -40,8 +40,10 @@
       margin: 60px 0;
     }
     nav {
+      position: fixed;
       height: 50px;
       top: 0px;
+      left: 0px;
       width: 100vw;
       display: flex;
       align-items: center;
@@ -52,7 +54,14 @@
     }
   </style>
   <script>
-    $('nav').scrollmptious();
+    var Down = function() {
+      $('nav').css({'top': '5%', 'background-color': 'magenta', 'color': 'cyan'});
+      console.log('lululululu')
+    }
+    var Up = function() {
+      $('nav').css({'top': '90%', 'background-color': 'cyan', 'color': 'magenta'})
+    }
+    $('nav').scrollmptious({downFunc: Down, upFunc: Up});
   </script>
 </body>
 </html>
