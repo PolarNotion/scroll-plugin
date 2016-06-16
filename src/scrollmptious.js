@@ -6,57 +6,66 @@
  * Licensed under the MIT license.
  */
 (function ($) {
-  $.fn.scrollmptious = function () {
-    return this.each(function () {
-      'use strict';
+  $.fn.scrollmptious = function (options) {
+    'use strict';
 
-      $('body').append(
-        "<style> .scrollmptious-element { position: relative; } </style>"
-      );
+    $(this).css({"position":"fixed"});
 
-      $(this).addClass('scrollmptious-element');
+    var delta = 5, 
+        didScroll = false,  
+        lastScrollTop = 0, 
+        height = $(this).outerHeight(),
+        initialOffset = $(this).offset(),
+        $this = $(this),
+        settings = $.extend({}, $.fn.scrollmptious.defaults, options);
 
-      var delta= 5, 
-          didScroll = false,  
-          lastScrollTop = 0, 
-          height = $(this).outerHeight(),
-          initialOffset = $(this).offset();
-
-      //code to run when scrolling
-      var hasScrolled = function() {
-        //initialize scroll position and find location
-        var st;
-        st = $(this).scrollTop();
-        if (Math.abs(lastScrollTop - st) <= delta) {
-          //didnt scroll enough, do nothing and break function
-          return;
-        }
-        if (st > lastScrollTop && st > height) {
-          //scrolling down
-          $(this).css('top', -height);
+    //code to run when scrolling
+    function hasScrolled() {
+      //initialize scroll position and find location
+      var st;
+      st = $(window).scrollTop();
+      if (Math.abs(lastScrollTop - st) <= delta) {
+        //didnt scroll enough, do nothing and break function
+        return;
+      }
+      if (st > lastScrollTop && st > height) {
+        //scrolling down
+        if (typeof settings.upFunc === 'function' ) {
+          settings.upFunc.call
         } else {
-          if (st + $(window).height() < $(document).height()) {
-            //scrollin back up
-            $(this).css('top', initialOffset.top);
-          }
+          $this.css('top', - height.toString() + 'px');
         }
-        //reset scroll position
-        lastScrollTop = st;
-      };
-
-      //throttled scroll check
-      setInterval( function() {
-        if (didScroll) {
-          hasScrolled();
-          didScroll = false;
+      } else if (st + $(window).height() < $(document).height()) {
+        if (typeof settings.downFunc === 'function' ) {
+          settings.downFunc.call
+        } else {
+          $this.css('top',0);
         }
-      }, 200);
+      }
+      //reset scroll position
+      lastScrollTop = st;
+    };
 
-      $(window).scroll(function() {
-        didScroll = true;
-      });
+    //throttled scroll check
+    setInterval(function() {
+      if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+      }
+    }, 200);
 
-      return $;
+    $(window).scroll(function() {
+      didScroll = true;
     });
+
+    return this;
   };
+
+  // Set up the default options.
+  $.fn.scrollmptious.defaults = {
+    elementLocation: 'top',
+    upFunc:  null,
+    downFunc: null
+  };
+
 }(jQuery));
