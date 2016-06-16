@@ -1,28 +1,27 @@
 /*
  * 
  * 
- *
+ * 
  * Copyright (c) 2016 Polar Notion
  * Licensed under the MIT license.
  */
 (function ($) {
   $.fn.scrollmptious = function (options) {
     'use strict';
-    
-    var delta = 5, 
+
+    var settings = $.extend({}, $.fn.scrollmptious.defaults, options),
         didScroll = false,  
         lastScrollTop = 0, 
         height = $(this).outerHeight(),
         initialOffset = $(this).offset(),
-        $this = $(this),
-        settings = $.extend({}, $.fn.scrollmptious.defaults, options);
+        $this = $(this);
 
     //code to run when scrolling
     function hasScrolled() {
       //initialize scroll position and find location
       var st;
       st = $(window).scrollTop();
-      if (Math.abs(lastScrollTop - st) <= delta) {
+      if (Math.abs(lastScrollTop - st) <= settings.delta) {
         //didnt scroll enough, do nothing and break function
         return;
       }
@@ -63,7 +62,8 @@
   $.fn.scrollmptious.defaults = {
     elementLocation: 'top',
     upFunc:  null,
-    downFunc: null
+    downFunc: null,
+    delta: 5,
   };
 
 }(jQuery));
