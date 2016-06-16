@@ -124,10 +124,10 @@ CSS
       </div>
 
       <h2 id="settings">Settings</h2>
-      <p class="lead">Turntable.js will accept an object as a parameter. There are three keys you can use to customize the slider. You can decide if you want to flip through the images as your mouse moves along the X or Y axis of the container, or as you scroll down the page using <b>axis</b>. If you want to reverse the direction it goes through the images, pass in <b>reverse: true</b>. You can also decide where the container will start to turn while you scroll down the page. Try playing around with the different options until you find what works best for you. You can pass in the object when you call the plugin like this -</p>
+      <p class="lead"></p>
       <pre class="prettyprint pad language-java">
 
-$('#mySpinnyContainer').turntable({
+$('.nav').turntable({
   axis: 'x, y, or scroll',
   reverse: boolean, // true or false, will reverse the array of images
   scrollStart: 'top, middle, or bottom', // only necessary if axis = 'scroll'
@@ -257,10 +257,8 @@ $('#mySpinnyContainer').turntable({
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
   <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="./js/scrollmptious.min.js"></script>
   <script type="text/javascript" src="./js/main.js"></script>
-  <script type="text/javascript">
-
-  </script>
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -13,7 +13,6 @@
         didScroll = false,  
         lastScrollTop = 0, 
         height = $(this).outerHeight(),
-        initialOffset = $(this).offset(),
         $this = $(this);
 
     //code to run when scrolling
@@ -41,7 +40,7 @@
       }
       //reset scroll position
       lastScrollTop = st;
-    };
+    }
 
     //throttled scroll check
     setInterval(function() {
