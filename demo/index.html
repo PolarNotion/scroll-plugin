@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Turntable.js : A Responsive JQuery Slider</title>
+  <title>Scrollmptious</title>
 
   <meta property="og:title" content="Scrollmptious: " />
   <meta property="og:type" content="website" />
@@ -61,10 +61,15 @@
   
     <div class="container">
       <h2 id="examples">What is this?</h2>
-      <p class="lead">Description</p>
+      <p class="lead">Scrollmptious is a jquery plugin that lets you determine scroll direction and run code accordingly. </p>
 
       <h2 id="install">Installation</h2>
-      <p class="lead">WOAAAAHHHH</p>
+      <p class="lead">  
+        Download the 
+        <a href="https://raw.githubusercontent.com/PolarNotion/jquery-scrollmptious/master/dist/jquery.scrollmptious.min.js">production version</a> 
+        or the 
+        <a href="https://raw.githubusercontent.com/PolarNotion/jquery-scrollmptious/master/dist/jquery.scrollmptious.js">development version</a>.
+      </p>
           
       <div>
 
@@ -87,35 +92,27 @@
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="html">
             <pre class="prettyprint pad">
-
-HTML
+&lt;nav&gt;
+  &lt;span&gt;Select any Element, but its gotta have a fixed position&lt;/span&gt;
+&lt;/nav&gt;
+&lt;script src="jquery.js"&gt;&lt;/script&gt;
+&lt;script src="dist/scrollmptious.min.js"&gt;&lt;/script&gt;
             </pre>
           </div>
           <div role="tabpanel" class="tab-pane" id="js">
             <pre class="prettyprint pad language-java">
-
-JAVASCRIPT
+  $('nav').scrollmptious(); // "awesome"
             </pre>
           </div>
           <div role="tabpanel" class="tab-pane" id="css">
             <pre class="prettyprint pad language-java">
-CSS
-.turntable {
-  margin: 0px; 
-}
-.turntable ul {
-  padding: 0px;
-  margin: 0px; 
-}
-.turntable ul li {
-  list-style-type: none;
-  display: none; 
-}
-.turntable ul li img {
-  width: 100%; 
-}
-.turntable ul li.active {
-  display: block; 
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100vw;
+  transition: top 0.2s ease-in-out;
 }
             </pre>
           </div>
@@ -124,16 +121,19 @@ CSS
       </div>
 
       <h2 id="settings">Settings</h2>
-      <p class="lead"></p>
+      <p class="lead">Instead of using the default action, (hiding and displaying your top navbar or whatever you put at the top of the screen really) You can hook into the plugins scroll action and run your own custom code on scroll. An example might be if you have a top and bottom navbar you want to hide and display, you could write a couple functions to run on up and down actions.</p>
       <pre class="prettyprint pad language-java">
+var scrollUp = function(){ 
+  $('body').addClass('hide-navs');
+}
 
-$('.nav').turntable({
-  axis: 'x, y, or scroll',
-  reverse: boolean, // true or false, will reverse the array of images
-  scrollStart: 'top, middle, or bottom', // only necessary if axis = 'scroll'
-});
+var scrollDown = function(){
+  $('body').removeClass('hide-navs');
+}
+
+$('body').scrollmptious({ upFunction: scrollUp, downFunction: scrollDown });
       </pre>
-      <p class="lead">The plugin will default to the X axis if no option is provided.</p>
+      <p class="lead">Technically it doesnt matter which element you target with jquery if youre using your own code, but you should try to target a single element and not a collection if youre going that route. </p>
       <br>
 
 
@@ -240,7 +240,7 @@ $('.nav').turntable({
 
   <footer class="text-center">
     <div class="container">
-      <iframe src="https://ghbtns.com/github-btn.html?user=polarnotion&repo=turntable&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
+      <iframe src="https://ghbtns.com/github-btn.html?user=polarnotion&repo=scroll-plugin&type=star&count=true" frameborder="0" scrolling="0" width="120px" height="20px"></iframe>
       <iframe src="https://ghbtns.com/github-btn.html?user=polarnotion&type=follow&count=true&size=small" frameborder="0" scrolling="0" width="170px" height="20px"></iframe>
       <br>
       <br>

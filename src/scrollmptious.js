@@ -27,13 +27,13 @@
       if (st > lastScrollTop && st > height) {
         //scrolling down
         if (typeof settings.upFunc === 'function' ) {
-          settings.upFunc.call($this);
+          settings.upFunction.call($this);
         } else {
           $this.css('top', - height.toString() + 'px');
         }
       } else if (st + $(window).height() < $(document).height()) {
         if (typeof settings.downFunc === 'function' ) {
-          settings.downFunc.call($this);
+          settings.downFunction.call($this);
         } else {
           $this.css('top',0);
         }
@@ -60,8 +60,8 @@
   // Set up the default options.
   $.fn.scrollmptious.defaults = {
     elementLocation: 'top',
-    upFunc:  null,
-    downFunc: null,
+    upFunction:  null,
+    downFunction: null,
     delta: 5,
   };
 

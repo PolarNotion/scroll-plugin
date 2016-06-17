@@ -13,3 +13,4 @@ $(function() {
   });
 });
 
+$('nav').scrollmptious().css('transition', 'top 0.2s ease-in-out');
