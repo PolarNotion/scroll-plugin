@@ -48,7 +48,7 @@
         hasScrolled();
         didScroll = false;
       }
-    }, 200);
+    }, 100);
 
     $(window).scroll(function() {
       didScroll = true;
